@@ -15,13 +15,21 @@ function App() {
     const fetchItems = async () => {
       try {
         const response = await axios.get('https://bwacharity.fly.dev/items');
-
         setItems([...response.data.nodes]);
       } catch (error) {}
     };
 
+    // const loadCarousel = () => {
+    //   // TODO: Calling carousel.js after rendering image
+    //   const script = document.createElement('script');
+    //   script.src = './carousel.js';
+    //   script.async = false;
+    //   document.body.appendChild(script);
+    // };
+
     fetchItems();
   }, []);
+
   return (
     <>
       <Header />
