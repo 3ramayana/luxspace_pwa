@@ -5,11 +5,13 @@ import Arrived from './Components/Arrived';
 import Clients from './Components/Clients';
 import AsideMenu from './Components/AsideMenu';
 import Footer from './Components/Footer';
+import Splash from './Pages/Splash';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -28,17 +30,27 @@ function App() {
     // };
 
     fetchItems();
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   }, []);
 
   return (
     <>
-      <Header />
-      <Hero />
-      <Browse />
-      <Arrived items={items} />
-      <Clients />
-      <AsideMenu />
-      <Footer />
+      {isLoading ? (
+        <Splash />
+      ) : (
+        <>
+          <Header />
+          <Hero />
+          <Browse />
+          <Arrived items={items} />
+          <Clients />
+          <AsideMenu />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
