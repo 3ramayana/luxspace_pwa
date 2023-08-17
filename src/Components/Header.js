@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 const Header = () => {
   return (
-    <header className="absolute w-full z-50 px-4">
+    <header className="w-full z-50 px-4 bg-gray-50">
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="w-56 items-center flex">
@@ -12,35 +14,27 @@ const Header = () => {
           <div className="w-full"></div>
           <div className="w-auto">
             <ul
-              className="fixed bg-white inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
+              className="text-black fixed inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
               id="menu">
               <li className="mx-3 py-6 md:py-0">
-                <a
-                  href="/"
-                  className="text-black md:text-white hover:underline">
+                <Link to="/" className="text-black  hover:underline">
                   Showcase
-                </a>
+                </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a
-                  href="/"
-                  className="text-black md:text-white hover:underline">
+                <Link to="/catalog" className="text-black  hover:underline">
                   Catalog
-                </a>
+                </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a
-                  href="/"
-                  className="text-black md:text-white hover:underline">
+                <Link to="/delivery" className="text-black  hover:underline">
                   Delivery
-                </a>
+                </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a
-                  href="/"
-                  className="text-black md:text-white hover:underline">
-                  Rewards
-                </a>
+                <Link to="/profile" className="text-black  hover:underline">
+                  Profile
+                </Link>
               </li>
             </ul>
           </div>
@@ -49,7 +43,7 @@ const Header = () => {
               <li className="ml-6 block md:hidden">
                 <button
                   id="menu-toggler"
-                  className="relative flex z-50 items-center justify-center w-8 h-8 text-black md:text-white focus:outline-none">
+                  className="relative flex z-50 items-center justify-center w-8 h-8 text-black  focus:outline-none">
                   <svg
                     className="fill-current"
                     width="18"
@@ -64,7 +58,7 @@ const Header = () => {
               <li className="ml-6">
                 <a
                   id="header-cart"
-                  className="flex items-center justify-center w-8 h-8 text-black md:text-white"
+                  className="flex items-center justify-center w-8 h-8 text-black "
                   href="cart.html">
                   <svg
                     className="fill-current"

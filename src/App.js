@@ -1,19 +1,15 @@
-import Header from './Components/Header';
-import Hero from './Components/Hero';
-import Browse from './Components/Browse';
-import Arrived from './Components/Arrived';
-import Clients from './Components/Clients';
-import AsideMenu from './Components/AsideMenu';
-import Footer from './Components/Footer';
-import Splash from './Pages/Splash';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Home from './Pages/Home';
+import Profile from './Pages/Profile';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // TODO: Create restAPI
     const fetchItems = async () => {
       try {
         const response = await axios.get('https://bwacharity.fly.dev/items');
@@ -22,7 +18,7 @@ function App() {
     };
 
     // const loadCarousel = () => {
-    //   // TODO: Calling carousel.js after rendering image
+    // TODO: Calling carousel.js after rendering image
     //   const script = document.createElement('script');
     //   script.src = './carousel.js';
     //   script.async = false;
@@ -38,19 +34,15 @@ function App() {
 
   return (
     <>
-      {isLoading ? (
-        <Splash />
-      ) : (
-        <>
-          <Header />
-          <Hero />
-          <Browse />
-          <Arrived items={items} />
-          <Clients />
-          <AsideMenu />
-          <Footer />
-        </>
-      )}
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home isLoading={isLoading} items={items} />}
+          />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
