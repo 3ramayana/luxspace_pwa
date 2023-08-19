@@ -15,8 +15,10 @@ function App() {
     // TODO: Create restAPI
     const fetchItems = async () => {
       try {
-        const response = await axios.get('https://bwacharity.fly.dev/items');
-        setItems([...response.data.nodes]);
+        const response = await axios.get(
+          'https://fake-json-luxspace.vercel.app/items'
+        );
+        setItems([...response.data]);
       } catch (error) {}
     };
 
