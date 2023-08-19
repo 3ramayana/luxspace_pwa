@@ -3,10 +3,10 @@ import AsideMenu from '../Components/AsideMenu';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
-const Profile = () => {
+const Profile = ({ cart }) => {
   return (
     <>
-      <Header />
+      <Header mode="dark" cart={cart} />
 
       <section className="bg-gray-100 py-8 px-4">
         <div className="container mx-auto">

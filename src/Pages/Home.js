@@ -5,17 +5,24 @@ import Hero from '../Components/Hero';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import AsideMenu from '../Components/AsideMenu';
+import Splash from './Splash';
 
-const Home = ({ items }) => {
+const Home = ({ items, isLoading, cart }) => {
   return (
     <>
-      <Header />
-      <Hero />
-      <Browse />
-      <Arrived items={items} />
-      <Clients />
-      <AsideMenu />
-      <Footer />
+      {isLoading ? (
+        <Splash />
+      ) : (
+        <>
+          <Header mode="light" cart={cart} />
+          <Hero />
+          <Browse />
+          <Arrived items={items} />
+          <Clients />
+          <AsideMenu />
+          <Footer />
+        </>
+      )}
     </>
   );
 };

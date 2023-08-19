@@ -1,38 +1,55 @@
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ mode, cart }) => {
   return (
-    <header className="w-full z-50 px-4 bg-gray-50">
+    <header
+      className={`${mode === 'light' ? 'absolute' : ''} w-full z-50 px-4`}>
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="w-56 items-center flex">
             <img
-              src="images/content/logo.png"
+              src="../images/content/logo.png"
               alt="Luxspace | Fulfill your house with beautiful furniture"
             />
           </div>
           <div className="w-full"></div>
           <div className="w-auto">
             <ul
-              className="text-black fixed inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
+              className="fixed bg-white inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
               id="menu">
               <li className="mx-3 py-6 md:py-0">
-                <Link to="/" className="text-black  hover:underline">
+                <Link
+                  to="/"
+                  className={`${
+                    mode === 'light' ? 'md:text-white' : 'md:text-black'
+                  } text-black hover:underline`}>
                   Showcase
                 </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <Link to="/catalog" className="text-black  hover:underline">
+                <Link
+                  to="/catalog"
+                  className={`${
+                    mode === 'light' ? 'md:text-white' : 'md:text-black'
+                  } text-black hover:underline`}>
                   Catalog
                 </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <Link to="/delivery" className="text-black  hover:underline">
+                <Link
+                  to="/delivery"
+                  className={`${
+                    mode === 'light' ? 'md:text-white' : 'md:text-black'
+                  } text-black hover:underline`}>
                   Delivery
                 </Link>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <Link to="/profile" className="text-black  hover:underline">
+                <Link
+                  to="/profile"
+                  className={`${
+                    mode === 'light' ? 'md:text-white' : 'md:text-black'
+                  } text-black hover:underline`}>
                   Profile
                 </Link>
               </li>
@@ -43,7 +60,7 @@ const Header = () => {
               <li className="ml-6 block md:hidden">
                 <button
                   id="menu-toggler"
-                  className="relative flex z-50 items-center justify-center w-8 h-8 text-black  focus:outline-none">
+                  className="relative flex z-50 items-center justify-center w-8 h-8 text-black md:text-white focus:outline-none">
                   <svg
                     className="fill-current"
                     width="18"
@@ -56,10 +73,12 @@ const Header = () => {
                 </button>
               </li>
               <li className="ml-6">
-                <a
+                <Link
                   id="header-cart"
-                  className="flex items-center justify-center w-8 h-8 text-black "
-                  href="cart.html">
+                  className={`flex items-center justify-center w-8 h-8 text-black ${
+                    mode === 'light' ? 'md:text-white' : 'md:text-black'
+                  }`}
+                  to="/cart">
                   <svg
                     className="fill-current"
                     width="26"
@@ -70,8 +89,19 @@ const Header = () => {
                     <path d="M19.438 7.2262H10.3122C9.96051 7.2262 9.67542 7.49932 9.67542 7.83626C9.67542 8.1732 9.96056 8.44632 10.3122 8.44632H19.438C19.7897 8.44632 20.0748 8.1732 20.0748 7.83626C20.0748 7.49927 19.7897 7.2262 19.438 7.2262Z" />
                     <path d="M18.9414 10.3942H10.8089C10.4572 10.3942 10.1721 10.6673 10.1721 11.0042C10.1721 11.3412 10.4572 11.6143 10.8089 11.6143H18.9413C19.293 11.6143 19.5781 11.3412 19.5781 11.0042C19.5781 10.6673 19.293 10.3942 18.9414 10.3942Z" />
                     <path d="M25.6499 4.508C25.407 4.22245 25.0472 4.05871 24.6626 4.05871H4.82655L4.42595 2.19571C4.34232 1.80709 4.06563 1.48078 3.68565 1.32272L0.890528 0.160438C0.567841 0.0261566 0.192825 0.168008 0.0528584 0.477043C-0.0872597 0.786176 0.0608116 1.14549 0.383347 1.27957L3.17852 2.4419L6.2598 16.7708C6.38117 17.3351 6.90578 17.7446 7.50723 17.7446H22.7635C23.1152 17.7446 23.4003 17.4715 23.4003 17.1346C23.4003 16.7976 23.1152 16.5245 22.7635 16.5245H7.50728L7.13247 14.7815H22.8814C23.4828 14.7815 24.0075 14.3719 24.1288 13.8076L25.9101 5.52488C25.9876 5.16421 25.8928 4.79349 25.6499 4.508ZM22.8814 13.5615H6.87012L5.08895 5.27879L24.6626 5.27884L22.8814 13.5615Z" />
+
+                    {cart && cart.length > 0 && (
+                      <g class="text-pink-400">
+                        <circle
+                          cx="25"
+                          cy="4.89023"
+                          r="4"
+                          class="fill-current dot"
+                        />
+                      </g>
+                    )}
                   </svg>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
