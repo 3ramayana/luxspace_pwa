@@ -5,6 +5,7 @@ import Profile from './Pages/Profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Details from './Pages/Details';
 import Cart from './Pages/Cart';
+import Showcase from './Pages/Showcase';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -12,7 +13,6 @@ function App() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    // TODO: Create restAPI
     const fetchItems = async () => {
       try {
         const response = await axios.get(
@@ -61,6 +61,10 @@ function App() {
             element={<Home isLoading={isLoading} items={items} cart={cart} />}
           />
           <Route path="/profile" element={<Profile cart={cart} />} />
+          <Route
+            path="/details"
+            element={<Showcase cart={cart} items={items} />}
+          />
           <Route
             path="/details/:id"
             element={<Details handleAddToCart={handleAddToCart} cart={cart} />}

@@ -19,7 +19,7 @@ const Header = ({ mode, cart }) => {
               id="menu">
               <li className="mx-3 py-6 md:py-0">
                 <Link
-                  to="/"
+                  to="/details"
                   className={`${
                     mode === 'light' ? 'md:text-white' : 'md:text-black'
                   } text-black hover:underline`}>
