@@ -11,37 +11,40 @@ function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const cacheCart = window.localStorage.getItem('cart');
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get(
-          'https://fake-json-luxspace.vercel.app/items'
-        );
-        setItems([...response.data]);
-      } catch (error) {}
-    };
+    (async function () {
+      const response = await axios.get(
+        'https://fake-json-luxspace.vercel.app/items'
+      );
+      setItems([...response.data]);
 
-    // const loadCarousel = () => {
-    // TODO: Calling carousel.js after rendering image
-    //   const script = document.createElement('script');
-    //   script.src = './carousel.js';
-    //   script.async = false;
-    //   document.body.appendChild(script);
-    // };
-
-    fetchItems();
+      if (!document.querySelector('script[src="/carousel.js"]')) {
+        const script = document.createElement('script');
+        script.src = '/carousel.js';
+        script.async = false;
+        document.body.appendChild(script);
+      }
+    })();
 
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
   }, []);
 
+  useEffect(() => {
+    if (cacheCart !== null) {
+      setCart(JSON.parse(cacheCart));
+    }
+  }, [cacheCart]);
+
   const handleAddToCart = (item) => {
     const currentIndex = cart.length;
     const newCart = [...cart, { id: currentIndex + 1, item }];
     setCart(newCart);
-    console.log(cart);
+
+    window.localStorage.setItem('cart', JSON.stringify(newCart));
   };
 
   const handleRemoveFromCart = (id) => {
@@ -50,6 +53,8 @@ function App() {
     });
 
     setCart(revisedCart);
+
+    window.localStorage.setItem('cart', JSON.stringify(revisedCart));
   };
 
   return (
